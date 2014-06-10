@@ -66,8 +66,26 @@
     )
   };
   
-  Game.prototype.over = function(){
+  Game.prototype.placeMark = function (pos) {
+    this.board[pos[0]][pos[1]] = this.player;
+  };
+  
+  Game.prototype.switchPlayer = function(){
+    if (this.player === Game.marks[0]) {
+      this.player = Game.marks[1]
+    } else {
+      this.player = Game.marks[0]
+    }
+  };
+  
+  Game.prototype.move = function (pos) {
+    this.placeMark(pos);
 
-  }
+    if (this.winner()) {
+      return true
+    } else {
+      this.switchPlayer();
+    };
+  };
   
 })(this);
