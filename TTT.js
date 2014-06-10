@@ -25,7 +25,7 @@
     
     _(Game.marks).each(function (mark){
       function diagonalWinTest (diagonals){
-        return _.every(positions, function(pos){
+        return _.every(diagonals, function(pos){
           return game.board[pos[0]][pos[1]] === mark;
         });
       }
@@ -43,9 +43,10 @@
     return winner;    
   };
   
-  Game.prototype.perpendicularWin = function(){
+  Game.prototype.horizontalWin = function(){
     var game = this;
     var winner = null;
+    
     _(Game.marks).each(function (mark){
       var validIdx = _.range(0, 3);
     
@@ -63,10 +64,25 @@
     return winner;
   };
   
-  Game.prototype.winner = function(){
-    return (
-      this.diagonalWin() || this.perpendicularWin()
-    )
+  Game.prototype.verticalWin = function () {
+    var game = this;
+
+    var winner = null;
+    _(Game.marks).each(function (mark) {
+      var indices = _.range(0, 3);
+
+      var won = _(indices).any(function (j) {
+        return _(indices).every(function (i) {
+          return game.board[i][j] === mark;
+        });
+      });
+
+      if (won) {
+        winner = mark;
+      }
+    });
+
+    return winner;
   };
   
   Game.prototype.placeMark = function (pos) {
@@ -89,6 +105,12 @@
     } else {
       this.switchPlayer();
     };
+  };
+  
+  Game.prototype.winner = function(){
+    return (
+      this.diagonalWin() || this.horizontalWin() || this.verticalWin()
+    )
   };
   
 })(this);
