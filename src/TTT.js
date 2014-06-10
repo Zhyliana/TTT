@@ -3,8 +3,7 @@
   var TTT = root.TTT = (root.TTT || {});
   
   var Game = TTT.Game = function(){
-    this.playerO = Game.marks[0];
-    this.playerX = Game.marks[1];
+    this.player = Game.marks[0];
     this.board = this.makeBoard();
   };
   Game.marks = ["O", "X"];
@@ -25,7 +24,7 @@
     _(Game.marks).each(function (mark){
       function diagonalWinTest (diagonals){
         return _.every(positions, function(pos){
-          return game.board[pos[0]][pos[1]] == mark;
+          return game.board[pos[0]][pos[1]] === mark;
         });
       }
       var won = _.any(
@@ -41,27 +40,34 @@
     return winner;    
   };
   
-  Game.prototype.horizontalWin = function(){
+  Game.prototype.perpendicularWin = function(){
     var game = this;
     var winner = null;
     _(Game.marks).each(function (mark){
-      var validIdx = _.range(0,3);
+      var validIdx = _.range(0, 3);
     
       var won = _(validIdx).any(function(i){
         return _(validIdx).every(function(j){
-          return game.board[i][j] == mark
-        })
+          return game.board[i][j] === mark
+        });
       });
       
       if (won) {
         winner = mark;
-      }
-      
+      }      
     });
     
-    return winner
-  },
+    return winner;
+  };
   
+  Game.prototype.winner = function(){
+    return (
+      this.diagonalWin() || this.perpendicularWin()
+    )
+  };
   
+  Game.prototype.over = function(){
+
+  }
   
 })(this);
