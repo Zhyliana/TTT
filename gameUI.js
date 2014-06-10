@@ -34,4 +34,10 @@
     this.setUpBoard();
     this.game = new TTT.Game();
   };
-})
+  
+  GameUi.prototype.startUp = function () {
+    this.game.run();
+    this.$el.click(".square", markBoard(this));
+  };
+  
+})(this);
