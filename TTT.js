@@ -6,13 +6,15 @@
     this.player = Game.marks[0];
     this.board = this.makeBoard();
   };
+  
   Game.marks = ["O", "X"];
-  Game.prototype.makeBoard() = function(){
-    return _.times(3, function(i)) {
-      return _.times(3, function(j)){
-        return null
-      }
-    }
+  
+  Game.prototype.makeBoard = function () {
+    return _.times(3, function (i) {
+      return _.times(3, function (j) {
+        return null;
+      });
+    });
   };
   
   Game.prototype.diagonalWin = function(){
@@ -27,8 +29,9 @@
           return game.board[pos[0]][pos[1]] === mark;
         });
       }
+      
       var won = _.any(
-        [diagonal1, diagonal2]
+        [diagonal1, diagonal2],
         diagonalWinTest
       );
       

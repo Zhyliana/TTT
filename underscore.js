@@ -1204,7 +1204,7 @@
             '<': '<',
             '>': '>',
             '"': '"',
-            "'": '''
+            "'": "'"
         }
     };
     entityMap.unescape = _.invert(entityMap.escape);

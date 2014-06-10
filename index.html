@@ -3,19 +3,18 @@
   <head>
     <script src="underscore.js"></script>
     <script src="jquery.js"></script>
+    <script src="TTT.js"></script>
     <script src="gameUI.js"></script>
-    <script src="src/TTT.js"></script>
     <link rel="stylesheet" href="TTT.css" type="text/css">
     <title>Tic Tac Toe</title>
-    <script>
-    </script>
   </head>
   <body>
       <div id="board"></div>
+      <script>
+        $(function() {
+          var game = new TTT.Game();
+          var gameUI = new TTT.GameUI(game, $('#board'));
+        })
+      </script>
   </body>
-  <script>
-    $(document).ready(function() {
-      var gameUI = new TTT.GameUI($('#board'));
-    })
-  </script>
 </html>
