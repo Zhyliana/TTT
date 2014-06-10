@@ -8,6 +8,4 @@
     this.board = this.makeBoard();
   }
   
-  
-  
 })(this);
