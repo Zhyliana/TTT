@@ -3,6 +3,7 @@
   <head>
     <script src="underscore.js"></script>
     <script src="jquery.js"></script>
+    <script src="gameUI.js"></script>
     <script src="src/TTT.js"></script>
     <link rel="stylesheet" href="ttt.css" type="text/css">
     <title>Tic Tac Toe</title>
@@ -10,5 +11,11 @@
     </script>
   </head>
   <body>
+    <script>
+      $(document).ready(function() {
+        var gameUI = new TTT.GameUI($('#board'));
+      })
+    </script>
   </body>
+  <div id="board"></div>
 </html>
