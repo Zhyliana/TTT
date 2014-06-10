@@ -8,7 +8,7 @@
     $("#board").on("click", ".empty-square", this.markBoard.bind(this));
   };
   
-  GameUi.prototype.setUpBoard = function() {
+  GameUI.prototype.setUpBoard = function() {
     var boardString = "";
      
     for(var r = 0; r < 3; r++){
@@ -35,7 +35,7 @@
     this.game = new TTT.Game();
   };
   
-  GameUi.prototype.startUp = function () {
+  GameUI.prototype.startUp = function () {
     this.game.run();
     this.$el.click(".square", markBoard(this));
   };
